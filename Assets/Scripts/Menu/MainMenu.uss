@@ -1,41 +1,49 @@
 :root {
-    background-color: #A47DAB;
+    /* background-color: #A47DAB; */
+    background-color: #1f1c2c;
 }
 
 .menu-container {
-    width: 70%;
+    width: 50%;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    height: 100%;
     color: white;
     padding: 10px 10px;
+    background-color: #1f1c2c;
+    /* border-width: 2px; */
+    /* border-color: #FFFFFF; */
+    border-radius: 10px;
 }
 
 .menu-btn {
-    width: 150px;
-    height: 30px;
-    margin-bottom: 10px;
+    padding: 6px 30px;
     border-radius: 8px;
-    background-color: #A020F0;
-    color: #AEC997;
-    -unity-font-style: italic;
-    -unity-font-style: bold-and-italic;
     transition: all 0.2s ease-in-out;
     border-width: 2px;
-    border-color: #EFBF04;
-
+    border-color: #FFFFFF;
+    font-size: 10px;
+    max-height: 45px;
+    background-color: transparent;
+    margin-bottom: 6px;
+    -unity-font-style: bold;
 }
 .menu-btn:hover {
-    width: 155px;
-    height: 35px;
+    background-color: #FFFFFF;
+    color: #1f1c2c;
+    scale: 1.1;
+    /* scale: -1 1; */
+    font-size: 11px;
+    /* box-shadow: 0 0 15px #fff; */
 }
 
 .title {
+    color: white;
     margin-bottom: 15px;
-    font-size: 36px;
-    color: #EFBF04;
+    font-size: 24px;
+    /* color: #EFBF04; */
+    text-shadow: 2px 5px 20px #000;
     /* -unity-font-style: italic; */
-    -unity-font-style: bold-and-italic;
+    -unity-font-style: bold;
     -unity-text-align: middle-center;
 }

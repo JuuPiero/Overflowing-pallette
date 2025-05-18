@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(LevelDataSO levelData)
     {
+        LevelManager.Instance.current = LevelManager.Instance.levels.IndexOf(levelData);
         var level = levelData.GetLevel();
         GridManager.Instance.Clear();
         GridManager.Instance.rows = level.rows;
@@ -122,9 +123,11 @@ public class GameManager : MonoBehaviour
     {
         var cells = GridManager.Instance.GetCells();
         bool isWinner = true;
-        foreach (var cell in cells) {
+        foreach (var cell in cells)
+        {
             if (!cell.CanChange) continue;
-            if (!cell.color.Equals(this.target)) {
+            if (!cell.color.Equals(this.target))
+            {
                 isWinner = false;
                 break;
             }
@@ -133,8 +136,10 @@ public class GameManager : MonoBehaviour
         if (isWinner)
         {
             print("Win");
-            LevelManager.Instance.NextLevel();
-            LoadLevel(LevelManager.Instance.GetCurrentLevel());
+            UIManager.Instance.OpenConfirmPopup();
+            //OPEN POP UP
+            // LevelManager.Instance.NextLevel();
+            // LoadLevel(LevelManager.Instance.GetCurrentLevel());
             return;
         }
 
@@ -143,6 +148,11 @@ public class GameManager : MonoBehaviour
             print("Thua");
             LoadLevel(LevelManager.Instance.GetCurrentLevel());
             return;
-        }      
+        }
+    }
+
+    public void ResetLevel()
+    {
+        LoadLevel(LevelManager.Instance.GetCurrentLevel());
     }
 }

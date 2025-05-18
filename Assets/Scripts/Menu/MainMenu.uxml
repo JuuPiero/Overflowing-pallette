@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scripts/Menu/MainMenu.uss?fileID=7433441132597879392&amp;guid=f5dbd5c2c9984c740b98a755186aad78&amp;type=3#MainMenu" />
+
+    <ui:Label text="Overflowing Palette" parse-escape-sequences="true" display-tooltip-when-elided="true" class="title" style="" />
     <ui:VisualElement class="menu-container">
-        <ui:Label text="Overflowing Palette" parse-escape-sequences="true" display-tooltip-when-elided="true" class="title" style="" />
-        <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn start-btn" />
+        <ui:Button text="▶ Start" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn start-btn" />
         <ui:Button text="Level" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn" />
         <ui:Button text="Setting" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn" />
         <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn exit-btn" />

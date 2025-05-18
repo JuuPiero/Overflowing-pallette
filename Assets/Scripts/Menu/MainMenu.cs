@@ -9,14 +9,12 @@ public class MainMenu : MonoBehaviour {
 
     void Awake() {
         _document = GetComponent<UIDocument>();
-        if(_document != null) {
-            _root = _document.rootVisualElement;
-        }
+        _root = _document?.rootVisualElement;
     }
 
     void Start() {
-        var starBtn = _root.GetElementByClassName<Button>("start-btn");
-        var exitBtn = _root.GetElementByClassName<Button>("exit-btn");
+        var starBtn = _root?.GetElementByClassName<Button>("start-btn");
+        var exitBtn = _root?.GetElementByClassName<Button>("exit-btn");
         starBtn.RegisterCallback<ClickEvent>(e =>
         {
             SceneManager.LoadSceneAsync("Game");

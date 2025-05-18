@@ -7,7 +7,8 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     public TextAsset jsonFile;
-    public bool isWinner;
+    public bool canPlay = true;
+    
 
     public Level GetLevel()
     {
