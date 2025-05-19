@@ -42,8 +42,7 @@ public class Cell : MonoBehaviour {
             ChangeColor(color);
         }
 
-
-        //------------------- x
+       
         if (!_canChange)
         {
             _image.color = Color.gray;
@@ -58,10 +57,12 @@ public class Cell : MonoBehaviour {
         });
     }
 
-    public void ChangeColor(Color color) {
-        if(!_canChange) return;
+    public void ChangeColor(Color color)
+    {
+        if (!_canChange) return;
         this.color = color;
         _image.color = this.color;
+        SoundManager.Instance?.PlaySound("Fill");
     }
     public void SetColor(Color color)
     {

@@ -88,7 +88,7 @@ public class GridManager : MonoBehaviour {
                 if (newPos.x >= 0 && newPos.x < this.columns &&
                    newPos.y >= 0 && newPos.y < this.rows &&
                    !visited.Contains(newPos) &&
-                    GetCell(newPos.x, newPos.y).color.Equals(prevColor)
+                   GetCell(newPos.x, newPos.y).color.Equals(prevColor)
                 )
                 {
                     queue.Enqueue(newPos);

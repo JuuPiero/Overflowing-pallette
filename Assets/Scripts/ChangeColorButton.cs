@@ -25,6 +25,9 @@ public class ChangeColorButton : MonoBehaviour
         _image.color = color;
 
         _button.onClick.AddListener(() => {
+
+            SoundManager.Instance?.PlaySound("Click");
+
             GameManager.Instance.ResetSelected();
             GameManager.Instance.currentColor = color;
             SetSelected(true);

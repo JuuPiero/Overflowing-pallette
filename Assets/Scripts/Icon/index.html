@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Icon Gradient 7 Màu</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
+        canvas { box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <canvas id="gameIcon" width="200" height="200"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameIcon');
+        const ctx = canvas.getContext('2d');
+        const size = 200;
+        const borderRadius = 20; // Độ bo góc
+
+        // Tạo gradient 7 màu (góc 45 độ)
+        const gradient = ctx.createLinearGradient(0, 0, size, size);
+        gradient.addColorStop(0, '#FF0000');    // Đỏ
+        gradient.addColorStop(0.16, '#FF7F00'); // Cam
+        gradient.addColorStop(0.32, '#FFFF00'); // Vàng
+        gradient.addColorStop(0.48, '#00FF00'); // Lục
+        gradient.addColorStop(0.64, '#0000FF'); // Lam
+        gradient.addColorStop(0.80, '#4B0082'); // Chàm
+        gradient.addColorStop(1, '#9400D3');    // Tím
+
+        // Vẽ hình vuông bo góc
+        ctx.beginPath();
+        ctx.moveTo(borderRadius, 0);
+        ctx.lineTo(size - borderRadius, 0);
+        ctx.quadraticCurveTo(size, 0, size, borderRadius);
+        ctx.lineTo(size, size - borderRadius);
+        ctx.quadraticCurveTo(size, size, size - borderRadius, size);
+        ctx.lineTo(borderRadius, size);
+        ctx.quadraticCurveTo(0, size, 0, size - borderRadius);
+        ctx.lineTo(0, borderRadius);
+        ctx.quadraticCurveTo(0, 0, borderRadius, 0);
+        ctx.closePath();
+
+        // Fill với gradient
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Thêm bóng đổ (tuỳ chọn)
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetY = 5;
+    </script>
+</body>
+</html>

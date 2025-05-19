@@ -1,6 +1,7 @@
 :root {
     /* background-color: #A47DAB; */
     background-color: #1f1c2c;
+    padding-top: 20px;
 }
 
 .menu-container {
@@ -32,7 +33,6 @@
     background-color: #FFFFFF;
     color: #1f1c2c;
     scale: 1.1;
-    /* scale: -1 1; */
     font-size: 11px;
     /* box-shadow: 0 0 15px #fff; */
 }
@@ -40,10 +40,9 @@
 .title {
     color: white;
     margin-bottom: 15px;
-    font-size: 24px;
-    /* color: #EFBF04; */
+    font-size: 30px;
     text-shadow: 2px 5px 20px #000;
-    /* -unity-font-style: italic; */
-    -unity-font-style: bold;
+    /* -unity-font-style: bold and italic; */
+    -unity-font-style: bold; 
     -unity-text-align: middle-center;
 }

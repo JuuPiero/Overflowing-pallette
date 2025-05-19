@@ -1,31 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ConfirmPopupUI : MonoBehaviour
+public class MenuPopup : MonoBehaviour
 {
-    public Button yesButton;
-    public Button resetButton;
-    public Button backToMenuButton;
+    public Button continueButton;
+    public Button levelsButton;
+
+    public Button quitButton;
+
+    public Canvas levelsCanvas;
 
     void Start()
     {
-        yesButton?.onClick.AddListener(() =>
+        continueButton?.onClick.AddListener(() =>
         {
             SoundManager.Instance?.PlaySound("Click");
-            LevelManager.Instance.NextLevel();
-            GameManager.Instance.LoadLevel(LevelManager.Instance.GetCurrentLevel());
+
             gameObject.SetActive(false);
         });
-        resetButton?.onClick.AddListener(() =>
+
+        levelsButton?.onClick.AddListener(() =>
         {
             SoundManager.Instance?.PlaySound("Click");
-            GameManager.Instance.ResetLevel();
+
             gameObject.SetActive(false);
+            levelsCanvas.gameObject.SetActive(true);
         });
-        backToMenuButton?.onClick.AddListener(() =>
+
+        quitButton?.onClick.AddListener(() =>
         {
             SoundManager.Instance?.PlaySound("Click");
+
             SceneManager.LoadScene("Menu");
         });
     }

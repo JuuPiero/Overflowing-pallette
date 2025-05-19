@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
@@ -27,8 +28,14 @@ public class LevelButton : MonoBehaviour
     {
         _button.onClick.AddListener(() =>
         {
-            // if (_levelData.canPlay)
-                GameManager.Instance?.LoadLevel(_levelData);
+            SoundManager.Instance?.PlaySound("Click");
+
+            if (GameManager.Instance != null)
+                GameManager.Instance.LoadLevel(_levelData);
+            else
+                LevelManager.Instance.current = LevelManager.Instance.levels.IndexOf(_levelData);
+                SceneManager.LoadScene("Game");
+                // GameManager.Instance.LoadLevel(_levelData);
         });
     }
 

@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 
     public Button resetButton;
     public Button menuButton;
-    public Canvas levelsCanvas;
+    
     public Canvas menuCanvas;
     public Canvas confirmPopup;
 
@@ -22,14 +22,15 @@ public class UIManager : MonoBehaviour
     {
         resetButton.onClick.AddListener(() =>
         {
+            SoundManager.Instance?.PlaySound("Click");
             if (GridManager.Instance.isFilling) return;
             GameManager.Instance.ResetLevel();
         });
 
         menuButton.onClick.AddListener(() =>
         {
-            // FIX
-            levelsCanvas.gameObject.SetActive(true);
+            SoundManager.Instance?.PlaySound("Click");
+            menuCanvas.gameObject.SetActive(true);
         });
     }
 
@@ -37,7 +38,5 @@ public class UIManager : MonoBehaviour
     {
         confirmPopup.gameObject.SetActive(true);
     }
-
-   
 
 }

@@ -4,8 +4,7 @@
     <ui:Label text="Overflowing Palette" parse-escape-sequences="true" display-tooltip-when-elided="true" class="title" style="" />
     <ui:VisualElement class="menu-container">
         <ui:Button text="▶ Start" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn start-btn" />
-        <ui:Button text="Level" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn" />
-        <ui:Button text="Setting" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn" />
+        <ui:Button text="Levels" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn levels-btn" />
         <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-btn exit-btn" />
     </ui:VisualElement>
 </ui:UXML>

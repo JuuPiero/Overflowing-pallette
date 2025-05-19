@@ -13,6 +13,7 @@ public class LevelsUI : MonoBehaviour
         LoadLevels();
         closeButton?.onClick.AddListener(() =>
         {
+            SoundManager.Instance?.PlaySound("Click");
             gameObject.SetActive(false);
         });
     }

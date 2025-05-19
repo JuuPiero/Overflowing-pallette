@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour {
     [SerializeField] private UIDocument _document;
+    [SerializeField] private GameObject levelsCanvas;
+
     private VisualElement _root;
 
     void Awake() {
@@ -12,9 +14,19 @@ public class MainMenu : MonoBehaviour {
         _root = _document?.rootVisualElement;
     }
 
-    void Start() {
+    void Start()
+    {
+
         var starBtn = _root?.GetElementByClassName<Button>("start-btn");
         var exitBtn = _root?.GetElementByClassName<Button>("exit-btn");
+        var levelsBtn = _root?.GetElementByClassName<Button>("levels-btn");
+
+        if (LevelManager.Instance?.current > 0)
+        {
+            starBtn.text = "▶ Continue";
+        }
+
+
         starBtn.RegisterCallback<ClickEvent>(e =>
         {
             SceneManager.LoadSceneAsync("Game");
@@ -22,6 +34,11 @@ public class MainMenu : MonoBehaviour {
         exitBtn.RegisterCallback<ClickEvent>(e =>
         {
             Application.Quit();
+        });
+
+        levelsBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            levelsCanvas.SetActive(true);
         });
     }
 }
