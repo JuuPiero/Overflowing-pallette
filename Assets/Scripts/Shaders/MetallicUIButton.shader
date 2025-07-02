@@ -3,7 +3,7 @@ Shader "UI/MetallicButton"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Color ("Tint", Color) = (1,1,1,1)  // Bắt buộc để Unity dùng Image.color
+        _Color ("Tint", Color) = (1,1,1,1) 
         _Shininess ("Shininess", Range(0.1, 10)) = 2
         _HighlightColor ("Highlight Color", Color) = (1,1,1,1)
     }

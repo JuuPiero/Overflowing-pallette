@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +8,13 @@ using UnityEngine.UI;
 public class GridManager : MonoBehaviour {
 
     public static GridManager Instance { get; private set; }
-    // public event Action OnColorChange;
-
 
     public float cellSize;
     public int rows;
     public int columns;
+    public Dictionary<Vector2Int, Cell> cells = new();
 
-    private List<Cell> _cells = new();
+
     public bool isLoading = true;    
     public bool isFilling = false;
 
@@ -27,23 +25,11 @@ public class GridManager : MonoBehaviour {
         Instance = this;
     }
 
-    // void Start()
-    // {
-        
-    //     // StartCoroutine(Loading());
-    // }
-    void OnValidate() {
-        // Setup();
-    }
-
     public IEnumerator Loading() {
         isLoading = true;
         yield return new WaitForSeconds(0.3f);
         Setup();
         isLoading = false;
-        // if(!isLoading) {
-        //     GameManager.Instance?.loadingPanel.SetActive(false);
-        // }
     }
 
     public void Fill(int x, int y, Color colorTochange)
@@ -116,14 +102,11 @@ public class GridManager : MonoBehaviour {
     public Cell GetCell(int x, int y) {
         return GetCell(new Vector2Int(x, y));
     }
-    public Cell GetCell(Vector2Int position) {
-        if(position.x < 0 || position.y < 0 || position.x >= columns || position.y >= rows) return null;
-        return transform.GetChild(position.y * columns + position.x)?.GetComponent<Cell>();
+    public Cell GetCell(Vector2Int position)
+    {
+        return cells[position];
     }
 
-    public Cell Find(Cell cell) {
-        return _cells.Find(c => cell == c);
-    }
 
     public Vector2 GetGridSize() {
         return GetComponent<RectTransform>().rect.size;
@@ -136,17 +119,8 @@ public class GridManager : MonoBehaviour {
 
     public void Clear()
     {
-        int count = transform.childCount;
-        while (count > 0)
-        {
-            Destroy(transform.GetChild(count - 1).gameObject);
-            count--;
-        }
-        // List<Cell> cells = new();
-        // for (int i = 0; i < count; i++)
-        // {
-        //     cells.Add(transform.GetChild(i).GetComponent<Cell>());
-        // }
+        transform.ClearChild();
+        cells.Clear();
     }
 
     public void Setup()
@@ -155,8 +129,9 @@ public class GridManager : MonoBehaviour {
         {
             _layout = GetComponent<GridLayoutGroup>();
         }
-        var gridSize = GetGridSize();
 
+        // Calculate cell size and cell spacing
+        Vector2 gridSize = GetGridSize();
         float totalSpacingX = (columns - 1) * _layout.spacing.x;
         float totalSpacingY = (rows - 1) * _layout.spacing.y;
 
@@ -193,16 +168,5 @@ public class GridManager : MonoBehaviour {
         }
 
         _layout.cellSize = new Vector2(cellSize, cellSize);
-        _cells = GetCells();
-
-        // for (int y = 0; y < rows; ++y)
-        // {
-        //     for (int x = 0; x < columns; ++x)
-        //     {
-        //         _cells[y * columns + x].position = new Vector2Int(x, y);
-        //     }
-        // }
     }
-
-    
 }

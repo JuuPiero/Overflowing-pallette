@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,7 +33,6 @@ public class LevelButton : MonoBehaviour
             else
                 LevelManager.Instance.current = LevelManager.Instance.levels.IndexOf(_levelData);
                 SceneManager.LoadScene("Game");
-                // GameManager.Instance.LoadLevel(_levelData);
         });
     }
 

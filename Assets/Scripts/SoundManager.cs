@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
             {
                 _soundsDict[clip.name] = clip;
             }
-             Instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

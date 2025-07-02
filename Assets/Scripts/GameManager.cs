@@ -1,7 +1,6 @@
 
 using System.Collections.Generic;
 using TMPro;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject cellPrefab;
     public TextMeshProUGUI textCount;
     public Image targetColor;
-
     public static GameManager Instance { get; private set; }
-
-    // public LevelDataSO currentLevel;
-    // public Level currentLe
 
     public List<Color> colors;
 
@@ -59,10 +54,6 @@ public class GameManager : MonoBehaviour
     {
         changeCount--;
         textCount.text = changeCount.ToString();
-        if (changeCount <= 0)
-        {
-            Debug.Log("Hết");
-        }
     }
 
     public void ResetSelected() // Reset selected buttons
@@ -97,21 +88,24 @@ public class GameManager : MonoBehaviour
                 cellGO.transform.SetParent(GridManager.Instance.transform, false);
                 cellGO.name = $"Cell_{x}_{y}";
                 Cell cell = cellGO.GetComponent<Cell>();
-                int cellValue = level.data[y * level.columns + x];
-                cell.value = cellValue;
                 cell.position = new Vector2Int(x, y);
 
-                if (cellValue != -1)
-                {
-                    Color cellColor;
-                    ColorUtility.TryParseHtmlString(level.colors[cellValue], out cellColor);
-                    cell.SetColor(cellColor);
-                }
-                else
+                cell.SetColor(level.GetColorAt(x, y));
+                int cellValue = level.GetValueAt(x, y);
+                // cell.value = cellValue;
+                if (cellValue == -1)
                 {
                     cell.CanChange = false;
-                    cell.SetColor(Color.gray);
+
+                    // Color cellColor;
+                    // ColorUtility.TryParseHtmlString(level.colors[cellValue], out cellColor);
+                    // cell.SetColor(cellColor);
                 }
+                // else
+                // {
+                //     cell.SetColor(Color.gray);
+                // }
+                GridManager.Instance.cells.Add(cell.position, cell);
             }
         }
         StartCoroutine(GridManager.Instance.Loading());
@@ -135,11 +129,7 @@ public class GameManager : MonoBehaviour
 
         if (isWinner)
         {
-            print("Win");
             UIManager.Instance.OpenConfirmPopup();
-            //OPEN POP UP
-            // LevelManager.Instance.NextLevel();
-            // LoadLevel(LevelManager.Instance.GetCurrentLevel());
             return;
         }
 

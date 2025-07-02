@@ -3,19 +3,15 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class Cell : MonoBehaviour {
-    private GameManager _gameManager;
 
     [SerializeField] private GameObject _icon;
-
 
     public Vector2Int position;
 
     [ColorDropdown("_gameManager.colors")]
     public Color color;
 
-    public int value;
-    
-    [SerializeField] private bool _canChange = true;
+    private bool _canChange = true;
     public bool CanChange
     {
         get { return _canChange; }
@@ -35,21 +31,20 @@ public class Cell : MonoBehaviour {
 
     void OnValidate()
     {
-        _gameManager = FindAnyObjectByType<GameManager>();
+        _button = GetComponent<Button>();
         _image = GetComponent<Image>();
         if (color != null)
         {
             ChangeColor(color);
         }
 
-       
         if (!_canChange)
         {
             _image.color = Color.gray;
             _icon.SetActive(true);
+            _button.transition = Selectable.Transition.ColorTint;
         }
     }
-
   
     void Start() {
         _button.onClick.AddListener(() => {
@@ -60,8 +55,7 @@ public class Cell : MonoBehaviour {
     public void ChangeColor(Color color)
     {
         if (!_canChange) return;
-        this.color = color;
-        _image.color = this.color;
+        SetColor(color);
         SoundManager.Instance?.PlaySound("Fill");
     }
     public void SetColor(Color color)

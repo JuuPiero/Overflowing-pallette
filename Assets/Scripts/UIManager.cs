@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
 
     public Button resetButton;
     public Button menuButton;
-    
     public Canvas menuCanvas;
     public Canvas confirmPopup;
 
