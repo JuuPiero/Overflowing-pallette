@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Cell : MonoBehaviour {
 
     [SerializeField] private GameObject _icon;
+    [SerializeField] private Animator _anim;
 
     public Vector2Int position;
 
@@ -27,12 +28,14 @@ public class Cell : MonoBehaviour {
     {
         _image = GetComponent<Image>(); 
         _button = GetComponent<Button>();
+        _anim = GetComponent<Animator>();
     }
 
     void OnValidate()
     {
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
+        _anim = GetComponent<Animator>();
         if (color != null)
         {
             ChangeColor(color);
@@ -56,6 +59,7 @@ public class Cell : MonoBehaviour {
     {
         if (!_canChange) return;
         SetColor(color);
+        _anim?.SetTrigger("Pressed");
         SoundManager.Instance?.PlaySound("Fill");
     }
     public void SetColor(Color color)
