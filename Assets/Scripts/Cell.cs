@@ -24,9 +24,9 @@ public class Cell : MonoBehaviour {
     }
     private Image _image;
     private Button _button;
-    void Awake()
+    private void Awake()
     {
-        _image = GetComponent<Image>(); 
+        _image = GetComponent<Image>();
         _button = GetComponent<Button>();
         _anim = GetComponent<Animator>();
     }
@@ -51,7 +51,7 @@ public class Cell : MonoBehaviour {
   
     void Start() {
         _button.onClick.AddListener(() => {
-            GridManager.Instance?.Fill(position.x, position.y, GameManager.Instance.currentColor);
+            GameManager.Instance.gridManager?.Fill(position.x, position.y, GameManager.Instance.currentColor);
         });
     }
 

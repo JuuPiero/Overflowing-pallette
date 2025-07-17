@@ -1,0 +1,38 @@
+:root {
+    background-color: #1f1c2c;
+    padding-top: 20px;
+}
+
+.title {
+    color: white;
+    margin-bottom: 50px;
+    margin-top: 8%;
+    font-size: 120px;
+    text-shadow: 2px 5px 20px #000;
+    /* -unity-font-style: bold and italic; */
+    -unity-font-style: bold; 
+    -unity-text-align: middle-center;
+}
+
+.menu-container {
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 10px;
+    background-color: #1f1c2c;
+    border-radius: 10px;
+    width: 100%;
+    /* margin-top: 20%; */
+}
+
+.menu-btn {
+    font-size: 35px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    width: 20%;
+    height: 120px;
+    margin-bottom: 30px;
+    -unity-font-style: bold;
+}
+

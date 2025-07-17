@@ -1,0 +1,28 @@
+
+.overlay {
+    justify-content: center;
+}
+.popup-container {
+    min-height: 320px;
+    background-color: var(--primary-color);
+    width: 35%;
+    border-radius: 20px;
+    justify-content: space-around;
+}
+.title {
+    font-size: 50px;
+    color: var(--text-color);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+}
+
+.actions-container {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.primary-btn {
+    width: 25%;
+    font-size: 25px;
+    height: 80px;
+}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,8 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class GridManager : MonoBehaviour {
 
-    public static GridManager Instance { get; private set; }
+
+    public GameObject cellPrefab;
 
     public float cellSize;
     public int rows;
@@ -20,10 +22,7 @@ public class GridManager : MonoBehaviour {
 
     private GridLayoutGroup _layout;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+  
 
     public IEnumerator Loading() {
         isLoading = true;
@@ -90,13 +89,13 @@ public class GridManager : MonoBehaviour {
     }
 
     public List<Cell> GetCells() {
-        int count = transform.childCount;
-        List<Cell> cells = new();
-        for (int i = 0; i < count; i++)
-        {
-            cells.Add(transform.GetChild(i).GetComponent<Cell>());
-        }
-        return cells;
+        // int count = transform.childCount;
+        // List<Cell> cells = new();
+        // for (int i = 0; i < count; i++)
+        // {
+        //     cells.Add(transform.GetChild(i).GetComponent<Cell>());
+        // }
+        return cells.Values.ToList<Cell>();
     }
 
     public Cell GetCell(int x, int y) {

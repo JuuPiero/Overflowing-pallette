@@ -33,11 +33,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(string name)
     {
+        if (_audioSource == null) return;
         if (_audioSource.isPlaying) return;
 
         if (_soundsDict.TryGetValue(name, out AudioClip clip))
         {
-            _audioSource.PlayOneShot(clip);
+            _audioSource?.PlayOneShot(clip);
         }
     } 
 

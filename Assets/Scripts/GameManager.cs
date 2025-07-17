@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject actionContainer;
     public GameObject buttonPrefab;
     public GameObject cellPrefab;
-    public TextMeshProUGUI textCount;
+    public TMP_Text textCount;
     public Image targetColor;
     public static GameManager Instance { get; private set; }
+
+    public GridManager gridManager;
 
     public List<Color> colors;
 
@@ -69,9 +71,9 @@ public class GameManager : MonoBehaviour
     {
         LevelManager.Instance.current = LevelManager.Instance.levels.IndexOf(levelData);
         var level = levelData.GetLevel();
-        GridManager.Instance.Clear();
-        GridManager.Instance.rows = level.rows;
-        GridManager.Instance.columns = level.columns;
+        gridManager.Clear();
+        gridManager.rows = level.rows;
+        gridManager.columns = level.columns;
 
         colors = level.GetColors();
         target = level.GetTarget();
@@ -85,37 +87,28 @@ public class GameManager : MonoBehaviour
             for (int x = 0; x < level.columns; ++x)
             {
                 GameObject cellGO = Instantiate(cellPrefab);
-                cellGO.transform.SetParent(GridManager.Instance.transform, false);
+                cellGO.transform.SetParent(gridManager.transform, false);
                 cellGO.name = $"Cell_{x}_{y}";
                 Cell cell = cellGO.GetComponent<Cell>();
                 cell.position = new Vector2Int(x, y);
 
                 cell.SetColor(level.GetColorAt(x, y));
                 int cellValue = level.GetValueAt(x, y);
-                // cell.value = cellValue;
                 if (cellValue == -1)
                 {
                     cell.CanChange = false;
-
-                    // Color cellColor;
-                    // ColorUtility.TryParseHtmlString(level.colors[cellValue], out cellColor);
-                    // cell.SetColor(cellColor);
                 }
-                // else
-                // {
-                //     cell.SetColor(Color.gray);
-                // }
-                GridManager.Instance.cells.Add(cell.position, cell);
+                gridManager.cells.Add(cell.position, cell);
             }
         }
-        StartCoroutine(GridManager.Instance.Loading());
+        StartCoroutine(gridManager.Loading());
         LoadButtons();
     }
 
 
     public void CheckWin()
     {
-        var cells = GridManager.Instance.GetCells();
+        var cells = gridManager.GetCells();
         bool isWinner = true;
         foreach (var cell in cells)
         {
@@ -129,14 +122,13 @@ public class GameManager : MonoBehaviour
 
         if (isWinner)
         {
-            UIManager.Instance.OpenConfirmPopup();
+            Navigation.Modal.ShowModal("CompleteModal");
             return;
         }
 
         if (changeCount <= 0)
         {
-            print("Thua");
-            LoadLevel(LevelManager.Instance.GetCurrentLevel());
+            ResetLevel();
             return;
         }
     }

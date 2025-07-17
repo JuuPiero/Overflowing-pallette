@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/Styles/Global.uss?fileID=7433441132597879392&amp;guid=7e2f9b7c956563b46b0b04c87acd2d0b&amp;type=3#Global" />
+    <Style src="project://database/Assets/Scripts/UI/Styles/GameMenuPopup.uss?fileID=7433441132597879392&amp;guid=621fb261f241aca499aaba9fe1fc5cab&amp;type=3#GameMenuPopup" />
+    <ui:VisualElement class="overlay" style="flex-grow: 1;">
+        <!-- <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" class="primary-btn close-btn" /> -->
+        <ui:Label tabindex="-1" text="Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" class="title" />
+        <ui:VisualElement class="menu-container">
+            <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" class="primary-btn continue-btn" />
+            <ui:Button text="Levels" parse-escape-sequences="true" display-tooltip-when-elided="true" class="primary-btn level-btn" />
+            <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" class="primary-btn quit-btn" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

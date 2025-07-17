@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="LevelButton" src="project://database/Assets/Scripts/UI/Views/LevelButton.uxml?fileID=9197481963319205126&amp;guid=331050b3a47e33d46b402671d2ab47e9&amp;type=3#LevelButton" />
+    <Style src="project://database/Assets/Scripts/UI/Styles/Global.uss?fileID=7433441132597879392&amp;guid=7e2f9b7c956563b46b0b04c87acd2d0b&amp;type=3#Global" />
+    <Style src="project://database/Assets/Scripts/UI/Styles/LevelPopup.uss?fileID=7433441132597879392&amp;guid=c3f555b71e0363c4db5d40cb0b268c67&amp;type=3#LevelPopup" />
+    <ui:VisualElement class="overlay" style="flex-grow: 1;">
+        <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" class="primary-btn close-btn" />
+        <ui:Label tabindex="-1" text="Levels" parse-escape-sequences="true" display-tooltip-when-elided="true" class="title" />
+        <ui:ScrollView class="levels-scroll-view">
+            <ui:VisualElement class="level-wrapper">
+                <ui:VisualElement class="list-levels">
+                    <ui:Instance template="LevelButton" name="LevelButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>
