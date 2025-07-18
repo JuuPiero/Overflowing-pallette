@@ -9,10 +9,10 @@ public class Cell : MonoBehaviour {
 
     public Vector2Int position;
 
-    [ColorDropdown("_gameManager.colors")]
+    [ColorDropdown]
     public Color color;
 
-    private bool _canChange = true;
+    [SerializeField] private bool _canChange = true;
     public bool CanChange
     {
         get { return _canChange; }
@@ -47,11 +47,15 @@ public class Cell : MonoBehaviour {
             _icon.SetActive(true);
             _button.transition = Selectable.Transition.ColorTint;
         }
+        else
+        {
+            _icon.SetActive(false);
+        }
     }
   
     void Start() {
         _button.onClick.AddListener(() => {
-            GameManager.Instance.gridManager?.Fill(position.x, position.y, GameManager.Instance.currentColor);
+            GameManager.Instance.gridManager?.Fill(position.x, position.y, GameManager.Instance.CurrentColor);
         });
     }
 

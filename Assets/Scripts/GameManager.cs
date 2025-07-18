@@ -1,70 +1,50 @@
 
+using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject loadingPanel;
-    public GameObject actionContainer;
-    public GameObject buttonPrefab;
-    public GameObject cellPrefab;
-    public TMP_Text textCount;
-    public Image targetColor;
     public static GameManager Instance { get; private set; }
+    public event Action OnLevelChanged;
+    public event Action OnChooseColorChanged;
+
+
+    public GameObject cellPrefab;
+    public Image targetColor;
 
     public GridManager gridManager;
 
     public List<Color> colors;
 
-    [ColorDropdown("colors")]
+    [ColorDropdown()]
     public Color target;
 
-    [ColorDropdown("colors")]
-    public Color currentColor;
+    [ColorDropdown()]
+    [SerializeField] private Color _currentColor;
+    public Color CurrentColor
+    {
+        get => _currentColor;
+        set
+        {
+            _currentColor = value;
+            OnChooseColorChanged?.Invoke();
+        }
+    }
     public int changeCount;
 
 
     void Awake()
     {
         Instance = this;
-        loadingPanel.SetActive(false);
+        LoadLevel(LevelManager.Instance.GetCurrentLevelSO());
     }
 
-    void Start()
-    {
-        LoadLevel(LevelManager.Instance.GetCurrentLevel());
-    }
-
-    void LoadButtons()
-    {
-        actionContainer.transform.ClearChild();
-
-        for (int i = 0; i < colors.Count; i++)
-        {
-            GameObject button = Instantiate(buttonPrefab);
-            button.GetComponent<ChangeColorButton>().color = colors[i];
-            button.GetComponent<ChangeColorButton>().SetIndex(i);
-            button.transform.SetParent(actionContainer.transform, false);
-        }
-        actionContainer.transform.GetChild(0).GetComponent<ChangeColorButton>().SetSelected(true);
-        currentColor = colors[0];
-    }
 
     public void ReduceChangeCount()
     {
         changeCount--;
-        textCount.text = changeCount.ToString();
-    }
-
-    public void ResetSelected() // Reset selected buttons
-    {
-        for (int i = 0; i < actionContainer.transform.childCount; i++)
-        {
-            var button = actionContainer.transform.GetChild(i);
-            button.GetComponent<ChangeColorButton>().SetSelected(false);
-        }
     }
 
     public void LoadLevel(LevelDataSO levelData)
@@ -78,7 +58,6 @@ public class GameManager : MonoBehaviour
         colors = level.GetColors();
         target = level.GetTarget();
         changeCount = level.maxChange;
-        textCount.text = changeCount.ToString();
         targetColor.color = target;
 
 
@@ -101,8 +80,10 @@ public class GameManager : MonoBehaviour
                 gridManager.cells.Add(cell.position, cell);
             }
         }
+
         StartCoroutine(gridManager.Loading());
-        LoadButtons();
+        CurrentColor = colors[0];
+        OnLevelChanged?.Invoke();
     }
 
 
@@ -135,6 +116,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        LoadLevel(LevelManager.Instance.GetCurrentLevel());
+        LoadLevel(LevelManager.Instance.GetCurrentLevelSO());
     }
 }

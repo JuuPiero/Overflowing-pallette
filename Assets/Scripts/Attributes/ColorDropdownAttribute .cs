@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ColorDropdownAttribute  : PropertyAttribute
 {
-    public string colorSourceField;
+    // public string colorSourceField;
 
-    public ColorDropdownAttribute(string colorSourceField)
+    public ColorDropdownAttribute()
     {
-        this.colorSourceField = colorSourceField;
+        // this.colorSourceField = colorSourceField;
     }
 }

@@ -20,7 +20,7 @@ public class CompletePopup : ScreenUIToolkitBase
         {
             SoundManager.Instance?.PlaySound("Click");
             LevelManager.Instance.NextLevel();
-            GameManager.Instance.LoadLevel(LevelManager.Instance.GetCurrentLevel());
+            GameManager.Instance.LoadLevel(LevelManager.Instance.GetCurrentLevelSO());
             Navigation.Modal.CloseModal();
         };
 

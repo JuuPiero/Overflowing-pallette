@@ -13,6 +13,5 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public LevelDataSO GetCurrentLevel() => levels[current];
-
+    public LevelDataSO GetCurrentLevelSO() => levels[current];
 }

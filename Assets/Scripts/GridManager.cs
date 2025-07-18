@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,14 @@ using UnityEngine.UI;
 public class GridManager : MonoBehaviour {
 
 
-    public GameObject cellPrefab;
+    public event Action OnFilled;
+
+    [SerializeField] private GameObject _cellPrefab;
 
     public float cellSize;
     public int rows;
     public int columns;
     public Dictionary<Vector2Int, Cell> cells = new();
-
 
     public bool isLoading = true;    
     public bool isFilling = false;
@@ -37,7 +39,9 @@ public class GridManager : MonoBehaviour {
         if (isFilling || !targetCell.CanChange) return;
         if (colorTochange.Equals(targetCell.color)) return;
         GameManager.Instance?.ReduceChangeCount();
+        OnFilled?.Invoke();
         StartCoroutine(ChangeColor(x, y, colorTochange));
+       
     }
 
     public IEnumerator ChangeColor(int x, int y, Color colorTochange)
@@ -121,6 +125,7 @@ public class GridManager : MonoBehaviour {
         transform.ClearChild();
         cells.Clear();
     }
+
 
     public void Setup()
     {
